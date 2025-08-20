@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srikanth M - Portfolio</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        :root {
+            --bs-blue-600: #0d6efd;
+            --bs-gray-600: #4b5563;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #212529;
+            /* Full-page background image from the shared image */
+            background-image: url('https://unsplash.com/photos/purple-and-blue-light-digital-wallpaper-8bghKxNU1j0');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        /* Semi-transparent overlay for the entire body */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.85); /* Light semi-transparent overlay */
+            z-index: -1;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom alert box */
+        .alert-box {
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .alert-box.show {
+            display: block;
+            opacity: 1;
+        }
+        /* Custom animation for fade-in and slide-up effect */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .animate-delay-1 { animation-delay: 0.1s; }
+        .animate-delay-2 { animation-delay: 0.2s; }
+        .animate-delay-3 { animation-delay: 0.3s; }
+        .animate-delay-4 { animation-delay: 0.4s; }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-5px);
+        }
+        /* Custom hover color for links */
+        .nav-link, .social-icon-link {
+            color: var(--bs-gray-600) !important;
+            transition: color 0.3s ease-in-out;
+        }
+        .nav-link:hover, .social-icon-link:hover {
+            color: var(--bs-blue-600) !important;
+        }
+        .text-blue-600 {
+            color: var(--bs-blue-600) !important;
+        }
+        .text-gray-600 {
+            color: var(--bs-gray-600) !important;
+        }
+        /* Hero Section Styling - now a clean, white card-like block */
+        .hero-section {
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .content-card-bg {
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            padding: 3rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .scroll-up-btn {
+            position: fixed;
+            bottom: 35px;
+            right: 32px;
+            z-index: 1050;
+            border-radius: 50%;
+            padding: 8px;
+            transition: background 0.2s;
+        }
+       
+        .scroll-down-btn {
+            position: fixed;
+            bottom: 35px;
+            right: 64px;
+            z-index: 1050;
+            border-radius: 50%;
+            padding: 8px;
+            transition: background 0.2s;
+        }
+       
+    </style>
+    <!-- Lucide Icons CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body class="text-dark">
+   
+
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand text-blue-600 fw-bold fs-4" href="#">Srikanth M</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#resume">Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+        <a class="nav-link" href="#certificates">Certificates</a>
+    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section mt-5 p-5" >
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-4 text-center text-md-start mb-4 mb-md-0 animate-fadeInUp">
+                    <!-- Photo placeholder - remember to replace with your own image URL -->
+                    <img src="https://media.licdn.com/dms/image/v2/D5603AQHECWgLUfA8Fw/profile-displayphoto-shrink_200_200/B56ZeXP.tcGoAY-/0/1750589243025?e=1758153600&v=beta&t=vn3yH7s9QwLDCnChQjIUfUmkm3NPbXt2SvNqKUNVMfw" alt="Srikanth M" class="rounded-circle d-block mx-auto mb-3 shadow-lg">
+                </div>
+                <div class="col-md-8 text-center text-md-start">
+                    <h1 class="display-4 fw-bold text-primary animate-fadeInUp animate-delay-1">Hello, I'm Srikanth </h1>
+                    <h4 class="text-dark mx-start animate-fadeInUp animate-delay-2" style="max-width: 600px;">
+                    Software Developer(Fresher)
+                    </h4>
+                    <div class="mt-4 d-flex justify-content-center justify-content-md-start gap-3 animate-fadeInUp animate-delay-3">
+                        <!-- LinkedIn Icon -->
+                        <a href="https://www.linkedin.com/in/sri-kanth-5b3ba1301?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="text-dark social-icon-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <!-- GitHub Icon -->
+                        <a href="https://github.com/Srikanth2624" target="_blank" class="text-dark social-icon-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github-icon lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                        </a>
+                        <!-- Email Icon -->
+                        <a href="mailto:srikanthm6886@gmail.com?subject=Inquiry%20from%20your%20portfolio&body=Hello%20Srikanth,%0D%0AI%20am%20writing%20to%20you%20about..." target="_blank" class="text-dark social-icon-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-5 animate-fadeInUp animate-delay-4 content-card-bg" ">
+            <h2 class="text-center mb-4 display-5 fw-bold text-dark">About Me</h2>
+            <div class="card p-4 rounded-3 shadow-sm mx-auto" style="max-width: 900px;">
+                <div class="card-body">
+                    <p class="card-text text-dark-emphasis lead">
+                      I am a passionate computer science student with hands-on experience in software development, web technologies, and design tools. I have interned at DOOZY Info Software Solutions, where I contributed to live projects using Flutter, Android, and SQL, and developed strong collaboration and communication skills. My technical toolkit includes Python, JavaScript, HTML, CSS, and design platforms like Blender and Figma. I am always eager to learn new technologies and create innovative solutions that make a difference 
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-5 content-card-bg animate-fadeInUp">
+            <h2 class="text-center mb-4 display-5 fw-bold text-dark">Projects</h2>
+            <div class="row row-cols-1 row-cols-md-2 g-4 mx-auto" style="max-width: 1100px;">
+                <!-- Project 1: Augmented Reality -->
+                <div class="col">
+                    <div class="card h-100 p-3 rounded-3 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-blue-600 fw-bold">Augmented Reality Experience</h5>
+                            <p class="card-text text-dark-emphasis mt-2">
+                                Developed an interactive Augmented Reality (AR) experience using Blender and basic coding techniques. The project taught me how to integrate real-world environments with digital objects.
+                            </p>
+                            <div class="mt-4">
+                                <span class="fw-bold text-dark">Tools Used:</span>
+                                <ul class="list-unstyled mt-1 text-dark-emphasis">
+                                    <li>Blender</li>
+                                    <li>Unity</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                   <!-- Project 2: Portfolio Website -->
+                <div class="col">
+                    <div class="card h-100 p-3 rounded-3 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-blue-600 fw-bold">Portfolio Website</h5>
+                            <p class="card-text text-dark-emphasis mt-2">
+                                Developed a personal portfolio website to showcase my projects and skills. The website is fully responsive.
+                            </p>
+                            <div class="mt-4">
+                                <span class="fw-bold text-dark">Tools Used:</span>
+                                <ul class="list-unstyled mt-1 text-dark-emphasis">
+                                    <li>HTML</li>
+                                    <li>CSS</li>
+                                    <li>Bootstrap</li>
+                                    <li>JavaScript</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Simple Webpage -->
+                <div class="col">
+                    <div class="card h-100 p-3 rounded-3 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-blue-600 fw-bold">Simple Webpage for Event Registration</h5>
+                            <p class="card-text text-dark-emphasis mt-2">
+                                Created a simple webpage to register for events. The site was built using foundational web technologies and was successfully hosted on Vercel.
+                            </p>
+                            <div class="mt-4">
+                                <span class="fw-bold text-dark">Tools Used:</span>
+                                <ul class="list-unstyled mt-1 text-dark-emphasis">
+                                    <li>HTML, CSS, JavaScript</li>
+                                    <li>Vercel</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume" class="py-5 animate-fadeInUp content-card-bg">
+            <h2 class="text-center mb-4 display-5 fw-bold text-dark">Resume</h2>
+            <div class="card p-4 rounded-3 shadow-sm mx-auto" style="max-width: 900px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-blue-600 fw-bold">Professional Summary</h5>
+                    <p class="card-text text-dark-emphasis lead mt-3">
+                       I am a computer science student who is very interested in learning technology and creating innovative solutions. I am eager to learn more by working on real-time projects. I am keen to keep myself updated with upcoming technologies. I am also interested in design.
+                    </p>
+                    <a href="resume.html" class="btn btn-primary btn-lg rounded-pill shadow-lg mt-4">View Full Resume (PDF)</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section id="experience" class="py-5 content-card-bg animate-fadeInUp">
+            <h2 class="text-center mb-4 display-5 fw-bold text-dark">Work Experience</h2>
+            <div class="card p-4 rounded-3 shadow-sm mx-auto" style="max-width: 900px;">
+                <div class="card-body">
+                    <h5 class="card-title text-blue-600 fw-bold">Software Development Intern</h5>
+                    <p class="card-subtitle text-dark-emphasis mb-2">DOOZY Info Software Solutions, Tuticorin, Tamil Nadu | July 2024</p>
+                    <ul class="mt-4 text-dark-emphasis">
+                        <li>Contributed to live software initiatives, applying skills in Flutter, Android, and database management.</li>
+                        <li>Engaged with seasoned IT teams, following industry-standard development methodologies.</li>
+                        <li>Advanced technical abilities in app development, API validation, and backend connectivity.</li>
+                        <li>Developed essential interpersonal skills such as collaboration and effective communication.</li>
+                    </ul>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title text-blue-600 fw-bold">Website Design and Development Intern</h5>
+                    <p class="card-subtitle text-dark-emphasis mb-2">iStudio | January 2025 – February 2025</p>
+                    <ul class="mt-4 text-dark-emphasis">
+                        <li>Successfully completed a one-month internship focused on website design and development.</li>
+                        <li>Gained hands-on experience in the end-to-end process of creating and developing websites.</li>
+                        <li>Learned foundational skills in web technologies and design principles under the guidance of an internship mentor.</li>
+                        <li>Contributed to real-world projects, enhancing practical skills and preparing for future professional endeavors.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-5 content-card-bg animate-fadeInUp" >
+            <h2 class="text-center mb-4 display-5 fw-bold text-dark">Skills</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mx-auto text-center" style="max-width: 1200px;">
+                <div class="col">
+                    <div class="card h-100 p-3 rounded-3 shadow-sm d-flex flex-column">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title fw-bold text-dark">Programming Languages</h5>
+                            <ul class="list-unstyled mt-3 text-dark-emphasis">
+                                <li>Python</li>
+                                <li>HTML, CSS, Bootstrap</li>
+                                <li>JavaScript</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 p-3 rounded-3 shadow-sm d-flex flex-column">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title fw-bold text-dark">Databases</h5>
+                            <ul class="list-unstyled mt-3 text-dark-emphasis">
+                                <li>SQL</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 p-3 rounded-3 shadow-sm d-flex flex-column">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title fw-bold text-dark">Design & Editing</h5>
+                            <ul class="list-unstyled mt-3 text-dark-emphasis">
+                                <li>Blender (basics)</li>
+                                <li>Canva</li>
+                                <li>Figma</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 p-3 rounded-3 shadow-sm d-flex flex-column">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title fw-bold text-dark">Soft Skills</h5>
+                            <ul class="list-unstyled mt-3 text-dark-emphasis">
+                                <li>Critical Thinking</li>
+                                <li>Adaptability</li>
+                                <li>Problem-Solving</li>
+                                <li>Teamwork & Management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="certificates" class="py-5 content-card-bg animate-fadeInUp">
+    <h2 class="text-center mb-4 display-5 fw-bold text-dark">Certificates</h2>
+    <div class="row row-cols-1 row-cols-md-2 g-4 mx-auto" style="max-width: 1100px;">
+        <div class="col">
+            <div class="card h-100 p-3 rounded-3 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-blue-600 fw-bold">SQL Completion Certificate</h5>
+                    <p class="card-text text-dark-emphasis mt-2">
+                        Description of the certificate, who issued it, and what skills it validates.
+                    </p>
+                    <div class="mt-4">
+                        <a href="https://media.licdn.com/dms/image/v2/D5622AQFjwvMiiDF1mw/feedshare-shrink_800/B56ZjBGYiYHAAo-/0/1755586336168?e=1758758400&v=beta&t=Izpe1CdvHNNal4juAOLoQgrEDQLCXRUv1M6wh3m88xk" target="_blank" class="btn btn-primary rounded-pill">View Certificate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col">
+            <div class="card h-100 p-3 rounded-3 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-blue-600 fw-bold">Internship Completion Certificate(offline)</h5>
+                    <p class="card-text text-dark-emphasis mt-2">
+                       Web Application Developer Internship Certificate
+                    </p>
+                    <div class="mt-4">
+                        <a href="https://media.licdn.com/dms/image/v2/D5622AQFEGKQUQw_0uw/feedshare-shrink_800/B56ZiqFlceG4Ak-/0/1755200250895?e=1758758400&v=beta&t=zpv1BqkQE41g_MNTgTpgkL8U_FFGZZmnxiJDT9Q7faY" target="_blank" class="btn btn-primary rounded-pill">View Certificate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 p-3 rounded-3 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-blue-600 fw-bold">Internship Completion Certificate(online)</h5>
+                    <p class="card-text text-dark-emphasis mt-2">
+                       Website design and Developer Internship Certificate
+                    </p>
+                    <div class="mt-4">
+                        <a href="https://media.licdn.com/dms/image/v2/D4E22AQEszeJpwlqr-A/feedshare-shrink_800/B4EZjIfYR2GUAo-/0/1755710327812?e=1758758400&v=beta&t=9I14cDf_LhvA8xpVZj-KzH6k50PTHyyd_-xV6pZHzdM" target="_blank" class="btn btn-primary rounded-pill">View Certificate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+</section>
+        
+
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-5 animate-fadeInUp">
+            <h2 class="text-center mb-4 display-5 fw-bold text-dark">Get In Touch</h2>
+            <div class="d-flex flex-column align-items-center mx-auto" style="max-width: 600px;">
+                <p class="text-dark-emphasis lead text-center">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
+                <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
+                    <a href="mailto:srikanthm6886@gmail.com" class="btn btn-primary btn-lg rounded-pill shadow-lg bg-gradient">Email Me</a>
+                    <button onclick="copyToClipboard('+91-99440 51326')" class="btn btn-primary btn-lg rounded-pill shadow-lg bg-gradient">Copy Phone Number</button>
+                </div>
+                <div class="mt-4 d-flex gap-4">
+                    <!-- LinkedIn Icon -->
+                    <a href="https://linkedin.com/in/Srikanth-M" target="_blank" class="text-dark social-icon-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <!-- GitHub Icon -->
+                    <a href="https://github.com/Srikanth2624" target="_blank" class="text-dark social-icon-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github-icon lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                    </a>
+                    <!-- Email Icon -->
+                    <a href="mailto:srikanthm6886@gmail.com?subject=Inquiry%20from%20your%20portfolio&body=Hello%20Srikanth,%0D%0AI%20am%20writing%20to%20you%20about..." class="text-dark social-icon-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scroll up Indicator (Fixed Bottom Right) -->
+    <div class="scroll-up-btn">
+        <a href="#hero" class="scroll-up-btn d-inline-flex animate-bounce">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-arrow-up-icon lucide-circle-arrow-up"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg>
+        </a>
+    </div>
+
+     <!-- Scroll down Indicator (Fixed Bottom Right) -->
+    <div class="scroll-down-btn">
+        <a href="#contact" class="scroll-down-btn d-inline-flex animate-bounce">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-arrow-down-icon lucide-circle-arrow-down"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="m8 12 4 4 4-4"/></svg>
+        </a>
+    </div>
+     
+
+    <!-- Custom Alert Box -->
+    <div id="copy-alert" class="alert-box">
+        Phone number copied to clipboard!
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p class="mb-0">&copy; 2024 Srikanth M. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Function to copy text to clipboard and show an alert
+        function copyToClipboard(text) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            // Show a custom alert
+            const alertBox = document.getElementById('copy-alert');
+            alertBox.classList.add('show');
+            setTimeout(() => {
+                alertBox.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
